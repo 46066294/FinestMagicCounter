@@ -19,7 +19,6 @@ public class MainActivity extends AppCompatActivity {
     public Integer lifeSelf = VIDAS;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
