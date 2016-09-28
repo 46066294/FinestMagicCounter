@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Finest Magic Counter v1.0</string>
+    <string name="activityControl">Control Pane</string>
 </resources>

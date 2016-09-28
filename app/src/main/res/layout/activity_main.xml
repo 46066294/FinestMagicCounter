@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
@@ -9,54 +10,86 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.mat.myapplication.MainActivity"
-    android:background="@drawable/magic"
+    android:background="@drawable/hdhexo"
     >
 
-    <LinearLayout
-        android:orientation="vertical"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:weightSum="1">
+        android:layout_height="match_parent">
 
         <Button
-            android:text="Button"
+            android:text="TU VIDA"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/buttonEnemy"
-            android:layout_weight="0.34" />
+            android:alpha="0.2"
+            android:id="@+id/buttonSelf"
+            android:layout_weight="0.34"
+            android:textColor="@android:color/background_light"
+            android:backgroundTint="@android:color/black"
+            tools:layout_editor_absoluteX="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_height="75dp" />
 
         <TextView
             android:text="TextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/displayEnemy"
-            android:layout_weight="0.15"
-            android:fontFamily="monospace"
-            android:textSize="70sp" />
-
-        <TextClock
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textClock"
-            android:layout_weight="0.05"
-            android:textAlignment="center" />
-
-        <TextView
-            android:text="TextView"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/displaySelf"
             android:layout_weight="0.16"
             android:fontFamily="monospace"
+            android:textSize="70sp"
+            android:textColor="@android:color/holo_orange_light"
             android:textAlignment="viewEnd"
-            android:textSize="70sp" />
+            app:layout_constraintBottom_toTopOf="@+id/buttonSelf"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginRight="16dp" />
 
         <Button
-            android:text="Button"
-            android:layout_width="match_parent"
+            android:text=""
+            android:alpha="0"
+            android:onClick="intentControlActivity"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/buttonSelf"
-            android:layout_weight="0.34" />
+            android:id="@+id/buttonControl"
+            app:layout_constraintBottom_toTopOf="@+id/displaySelf"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/displayEnemy"
+            android:layout_marginStart="16dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginLeft="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginRight="16dp" />
 
-    </LinearLayout>
+        <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/displayEnemy"
+            android:layout_weight="0.15"
+            android:fontFamily="monospace"
+            android:textSize="70sp"
+            android:textColor="@android:color/holo_blue_light"
+            android:textAlignment="viewStart"
+            app:layout_constraintTop_toBottomOf="@+id/buttonEnemy"
+            android:layout_marginStart="16dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginLeft="16dp" />
+
+        <Button
+            android:text="SU VIDA"
+            android:layout_width="match_parent"
+            android:id="@+id/buttonEnemy"
+            android:alpha="0.2"
+            android:layout_weight="0.34"
+            android:textColor="@android:color/black"
+            android:backgroundTint="@android:color/background_light"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp"
+            android:layout_height="75dp" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
 </RelativeLayout>
