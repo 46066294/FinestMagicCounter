@@ -14,11 +14,14 @@ public class MainActivity extends AppCompatActivity {
 
     static final String TAG1 = "MainActivity";
     static final String TAG2 = "ControlActivity";
-    public final Integer VIDAS = 20;
 
+    public final Integer VIDAS = 20;
+    public final Integer VENOM = 10;
 
     public Integer lifeEnemy = VIDAS;
     public Integer lifeSelf = VIDAS;
+    public Integer lifeEnemyVenom = VENOM;
+    public Integer lifeSelfVenom = VENOM;
 
     public final static String EXTRA_MESSAGE = "extraMessage";
 
@@ -32,12 +35,16 @@ public class MainActivity extends AppCompatActivity {
 
         final TextView textViewEnemy = (TextView) findViewById(R.id.displayEnemy);
         final TextView textViewSelf = (TextView) findViewById(R.id.displaySelf);
+        final TextView textViewEnemyVenom = (TextView) findViewById(R.id.displayEnemyVenom);
+        final TextView textViewSelfVenom = (TextView) findViewById(R.id.displaySelfVenom);
 
         textViewEnemy.setText(lifeEnemy.toString());
         textViewSelf.setText(lifeSelf.toString());
+        textViewEnemyVenom.setText(lifeEnemyVenom.toString());
+        textViewSelfVenom.setText(lifeSelfVenom.toString());
 
-        Button btnSelf = (Button)findViewById(R.id.buttonSelf);
-        btnSelf.setOnClickListener(new View.OnClickListener() {
+        Button btnSelfMenosVida = (Button)findViewById(R.id.buttonSelfMenos);
+        btnSelfMenosVida.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.i(TAG1, "Pulsado boton de restar vidas propias");
@@ -47,12 +54,34 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button btnEnemy = (Button)findViewById(R.id.buttonEnemy);
-        btnEnemy.setOnClickListener(new View.OnClickListener() {
+        Button btnSelfMasVida = (Button)findViewById(R.id.buttonSelfMas);
+        btnSelfMasVida.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(TAG1, "Pulsado boton de sumar vidas propias");
+                lifeSelf++;
+                textViewSelf.setText(lifeSelf.toString());
+                comprobarFinDePartida(lifeSelf);
+            }
+        });
+
+        Button btnEnemyMenosVida = (Button)findViewById(R.id.buttonEnemyMenos);
+        btnEnemyMenosVida.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.i(TAG1, "Pulsado boton de restar vidas enemigas");
                 lifeEnemy--;
+                textViewEnemy.setText(lifeEnemy.toString());
+                comprobarFinDePartida(lifeEnemy);
+            }
+        });
+
+        Button btnEnemyMasVida = (Button)findViewById(R.id.buttonEnemyMas);
+        btnEnemyMasVida.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(TAG1, "Pulsado boton de sumar vidas enemigas");
+                lifeEnemy++;
                 textViewEnemy.setText(lifeEnemy.toString());
                 comprobarFinDePartida(lifeEnemy);
             }
@@ -72,6 +101,45 @@ public class MainActivity extends AppCompatActivity {
         });*/
 
 
+        Button btnSelfMenosVenom = (Button)findViewById(R.id.btnSelfMenosVenom);
+        btnSelfMenosVenom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(TAG1, "Pulsado boton de restar veneno propio");
+                lifeSelfVenom--;
+                textViewSelfVenom.setText(lifeSelfVenom.toString());
+            }
+        });
+
+        Button btnSelfMasVenom = (Button)findViewById(R.id.btnSelfMasVenom);
+        btnSelfMasVenom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(TAG1, "Pulsado boton de sumar veneno propio");
+                lifeSelfVenom++;
+                textViewSelfVenom.setText(lifeSelfVenom.toString());
+            }
+        });
+
+        Button btnEnemyMenosVenom = (Button)findViewById(R.id.btnEnemyMenosVenom);
+        btnEnemyMenosVenom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(TAG1, "Pulsado boton de restar veneno enemigo");
+                lifeEnemyVenom--;
+                textViewEnemyVenom.setText(lifeEnemyVenom.toString());
+            }
+        });
+
+        Button btnEnemyMasVenom = (Button)findViewById(R.id.btnEnemyMasVenom);
+        btnEnemyMasVenom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(TAG1, "Pulsado boton de sumar veneno enemigo");
+                lifeEnemyVenom++;
+                textViewEnemyVenom.setText(lifeEnemyVenom.toString());
+            }
+        });
 
     }
 
