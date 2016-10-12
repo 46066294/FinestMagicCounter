@@ -27,6 +27,53 @@ public class MainActivity extends AppCompatActivity {
     public Integer lifeEnemyVenom = VENOM;
     public Integer lifeSelfVenom = VENOM;
 
+    public TextView textViewEnemy = null;
+    public TextView textViewSelf = null;
+    public TextView textViewEnemyVenom = null;
+    public TextView textViewSelfVenom = null;
+
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+
+        // Save custom values into the bundle
+        outState.putInt("lifeEnemy", lifeEnemy);
+        outState.putInt("lifeSelf", lifeSelf);
+        outState.putInt("lifeEnemyVenom", lifeEnemyVenom);
+        outState.putInt("lifeSelfVenom", lifeSelfVenom);
+
+        // Always call the superclass so it can save the view hierarchy state
+        super.onSaveInstanceState(outState);
+
+        Log.i("onSaveInstanceState", lifeEnemy.toString());
+        Log.i("onSaveInstanceState", lifeSelf.toString());
+        Log.i("onSaveInstanceState", lifeEnemyVenom.toString());
+        Log.i("onSaveInstanceState", lifeSelfVenom.toString());
+
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        // Always call the superclass so it can restore the view hierarchy
+        super.onRestoreInstanceState(savedInstanceState);
+        // Restore state members from saved instance
+        lifeEnemy = savedInstanceState.getInt("lifeEnemy");
+        lifeSelf = savedInstanceState.getInt("lifeSelf");
+        lifeEnemyVenom = savedInstanceState.getInt("lifeEnemyVenom");
+        lifeSelfVenom = savedInstanceState.getInt("lifeSelfVenom");
+
+        textViewEnemy.setText(lifeEnemy.toString());
+        textViewSelf.setText(lifeSelf.toString());
+        textViewEnemyVenom.setText(lifeEnemyVenom.toString());
+        textViewSelfVenom.setText(lifeSelfVenom.toString());
+
+        Log.i("onRestoreInstanceState", lifeEnemy.toString());
+        Log.i("onRestoreInstanceState", lifeSelf.toString());
+        Log.i("onRestoreInstanceState", lifeEnemyVenom.toString());
+        Log.i("onRestoreInstanceState", lifeSelfVenom.toString());
+
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,13 +81,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
+        textViewEnemy = (TextView) findViewById(R.id.displayEnemy);
+        textViewSelf = (TextView) findViewById(R.id.displaySelf);
+        textViewEnemyVenom = (TextView) findViewById(R.id.displayEnemyVenom);
+        textViewSelfVenom = (TextView) findViewById(R.id.displaySelfVenom);
 
         Log.i(TAG1, "Application is running...");
 
-        final TextView textViewEnemy = (TextView) findViewById(R.id.displayEnemy);
-        final TextView textViewSelf = (TextView) findViewById(R.id.displaySelf);
-        final TextView textViewEnemyVenom = (TextView) findViewById(R.id.displayEnemyVenom);
-        final TextView textViewSelfVenom = (TextView) findViewById(R.id.displaySelfVenom);
+
 
         RelativeLayout layout =(RelativeLayout)findViewById(R.id.activity_main);
         layout.setBackgroundResource(R.drawable.ball);
