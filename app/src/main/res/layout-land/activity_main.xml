@@ -200,7 +200,7 @@
             android:textColor="@android:color/background_dark" />
 
         <Button
-            android:text="Button"
+            android:background="@mipmap/arrow_up"
             android:alpha="0.5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -215,7 +215,7 @@
             android:layout_marginLeft="100dp" />
 
         <Button
-            android:text="Button"
+            android:background="@mipmap/arrow_down"
             android:alpha="0.5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

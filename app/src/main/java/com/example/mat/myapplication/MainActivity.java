@@ -2,9 +2,9 @@ package com.example.mat.myapplication;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -32,10 +32,11 @@ public class MainActivity extends AppCompatActivity {
     public TextView textViewEnemyVenom = null;
     public TextView textViewSelfVenom = null;
 
+    RelativeLayout layout;
+
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-
         // Save custom values into the bundle
         outState.putInt("lifeEnemy", lifeEnemy);
         outState.putInt("lifeSelf", lifeSelf);
@@ -49,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
         Log.i("onSaveInstanceState", lifeSelf.toString());
         Log.i("onSaveInstanceState", lifeEnemyVenom.toString());
         Log.i("onSaveInstanceState", lifeSelfVenom.toString());
-
     }
 
     @Override
@@ -71,16 +71,13 @@ public class MainActivity extends AppCompatActivity {
         Log.i("onRestoreInstanceState", lifeSelf.toString());
         Log.i("onRestoreInstanceState", lifeEnemyVenom.toString());
         Log.i("onRestoreInstanceState", lifeSelfVenom.toString());
-
-
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
+
         textViewEnemy = (TextView) findViewById(R.id.displayEnemy);
         textViewSelf = (TextView) findViewById(R.id.displaySelf);
         textViewEnemyVenom = (TextView) findViewById(R.id.displayEnemyVenom);
@@ -88,9 +85,7 @@ public class MainActivity extends AppCompatActivity {
 
         Log.i(TAG1, "Application is running...");
 
-
-
-        RelativeLayout layout =(RelativeLayout)findViewById(R.id.activity_main);
+        layout =(RelativeLayout)findViewById(R.id.activity_main);
         layout.setBackgroundResource(R.drawable.ball);
 
 
@@ -111,8 +106,7 @@ public class MainActivity extends AppCompatActivity {
         textViewEnemyVenom.setText(lifeEnemyVenom.toString());
         textViewSelfVenom.setText(lifeSelfVenom.toString());
 
-        Log.i("...hd int: ", String.valueOf(R.drawable.hdhexo));//2130837582
-
+        //Log.i("...hd int: ", String.valueOf(R.drawable.hdhexo));//2130837582
 
         Button btnSelfMenosVida = (Button)findViewById(R.id.buttonSelfMenos);
         btnSelfMenosVida.setOnClickListener(new View.OnClickListener() {
@@ -306,4 +300,40 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void newGame(MenuItem item) {
+        final Integer tmp_lifeEnemy = lifeEnemy;
+        final Integer tmp_lifeSelf = lifeSelf;
+        final Integer tmp_lifeEnemyVenom = lifeEnemyVenom;
+        final Integer tmp_lifeSelfVenom = lifeSelfVenom;
+
+        lifeEnemy = VIDAS;
+        lifeSelf = VIDAS;
+        lifeEnemyVenom = VENOM;
+        lifeSelfVenom = VENOM;
+
+        Snackbar.make(layout,R.string.snackbar_text, Snackbar.LENGTH_LONG).
+                setAction(R.string.snackbar_action, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        lifeEnemy = tmp_lifeEnemy;
+                        lifeSelf = tmp_lifeSelf;
+                        lifeEnemyVenom = tmp_lifeEnemyVenom;
+                        lifeSelfVenom = tmp_lifeSelfVenom;
+
+                        textViewEnemy.setText(lifeEnemy.toString());
+                        textViewSelf.setText(lifeSelf.toString());
+                        textViewEnemyVenom.setText(lifeEnemyVenom.toString());
+                        textViewSelfVenom.setText(lifeSelfVenom.toString());
+
+                        Snackbar snackbar1 = Snackbar.make(layout, "Back to the last game", Snackbar.LENGTH_SHORT);
+                        snackbar1.show();
+                    }
+                }).show();
+
+
+        textViewEnemy.setText(lifeEnemy.toString());
+        textViewSelf.setText(lifeSelf.toString());
+        textViewEnemyVenom.setText(lifeEnemyVenom.toString());
+        textViewSelfVenom.setText(lifeSelfVenom.toString());
+    }
 }
